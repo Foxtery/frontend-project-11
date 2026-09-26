@@ -2,6 +2,10 @@
 
 [![hexlet-check](https://github.com/Foxtery/frontend-project-11/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Foxtery/frontend-project-11/actions)
 
+[![CI](https://github.com/Foxtery/frontend-project-11/actions/workflows/ci.yml/badge.svg)](https://github.com/Foxtery/frontend-project-11/actions/workflows/ci.yml)
+
+[Открыть RSS агрегатор](https://frontend-project-11-fox-team4.vercel.app/)
+
 После проекта вы сможете уверенно работать с DOM, Vite, Tailwind CSS, AJAX, валидациями и деплоить проект
 
 Учебный проект Хекслета: https://ru.hexlet.io/programs/frontend
