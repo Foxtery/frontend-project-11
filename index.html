@@ -8,22 +8,39 @@
   </head>
   <body>
     <div id="app">
-      <main>
-      <h1>RSS агрегатор</h1>
-      <p>Читайте новости из любимых источников в одном месте.</p>
+      <main class="mx-auto max-w-3xl px-6 py-12">
+        <h1 class="text-4xl font-bold text-gray-900">
+          RSS агрегатор
+        </h1>
 
-      <form>
-        <label for="rss-url">Ссылка на RSS-поток</label>
-        <input
-          id="rss-url"
-          name="url"
-          type="url"
-          placeholder="https://example.com/feed.xml"
-          required
-        >
-        <button type="submit">Добавить</button>
-      </form>
-    </main>
+        <p class="mt-4 text-lg text-gray-600">
+          Читайте новости из любимых источников в одном месте.
+        </p>
+
+        <form class="mt-8">
+          <label for="rss-url" class="block font-medium text-gray-900">
+            Ссылка на RSS-поток
+          </label>
+
+          <div class="mt-2 flex flex-col gap-3 sm:flex-row">
+            <input
+              id="rss-url"
+              name="url"
+              type="url"
+              placeholder="https://example.com/feed.xml"
+              required
+              class="min-w-0 flex-1 rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-600 focus:ring-blue-600"
+            >
+
+            <button
+              type="submit"
+              class="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            >
+              Добавить
+            </button>
+          </div>
+        </form>
+      </main>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
