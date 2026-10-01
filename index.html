@@ -17,9 +17,9 @@
           Читайте новости из любимых источников в одном месте.
         </p>
 
-        <form class="mt-8">
+        <form id="form" class="mt-8" novalidate>
           <label for="rss-url" class="block font-medium text-gray-900">
-            Ссылка на RSS-поток
+            Ссылка RSS
           </label>
 
           <div class="mt-2 flex flex-col gap-3 sm:flex-row">
@@ -29,10 +29,12 @@
               type="url"
               placeholder="https://example.com/feed.xml"
               required
+              aria-describedby="Error"
               class="min-w-0 flex-1 rounded-lg border border-gray-300 px-4 py-3 focus:border-blue-600 focus:ring-blue-600"
             >
 
             <button
+              id="add-button"
               type="submit"
               class="rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
             >
@@ -40,6 +42,7 @@
             </button>
           </div>
         </form>
+        <p id="Error" aria-live="polite"></p>
       </main>
     </div>
     <script type="module" src="/src/main.js"></script>
