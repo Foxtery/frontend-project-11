@@ -1,15 +1,21 @@
 import { subscribe, snapshot } from "valtio/vanilla"
 
-const initView = (state) => {
+const initView = (state, i18nInstance) => {
   const form = document.getElementById('form')
   const adressInput = document.getElementById('rss-url')
   const button = document.getElementById('add-button')
-  const errorMessage = document.getElementById('Error')
+  const errorKey = document.getElementById('Error')
 
   let previousFormState = state.formState
 
   const renderForm = (currentState) => {
-    errorMessage.textContent = currentState.errorMessage
+    if (currentState.errorKey === null) {
+        errorKey.textContent = ''
+    }
+    else {
+        errorKey.textContent = i18nInstance.t(currentState.errorKey)
+    }
+
     if (currentState.formState === 'validating') {
         button.disabled = true
     }

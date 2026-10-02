@@ -1,11 +1,21 @@
-import { string } from 'yup'
+import { string, setLocale } from 'yup'
+
+setLocale({
+    mixed: {
+        required: 'errors.required',
+        notOneOf: 'errors.duplicate'
+    },
+    string: {
+        url: 'errors.invalidUrl'
+    }
+})
 
 const validateUrl = (url, listOfUrls) => {
     const trimmedUrl = url.trim()
     const urlSchema = string()
-    .required('Не должно быть пустым')
-    .url('Ссылка должна быть валидным URL')
-    .notOneOf(listOfUrls, 'Данный URL уже добавлен')
+    .required()
+    .url()
+    .notOneOf(listOfUrls)
     return urlSchema.validate(trimmedUrl)
 }
 
