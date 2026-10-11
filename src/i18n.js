@@ -1,4 +1,4 @@
-import errors from "./locales/ru.js"
+import ru from "./locales/ru.js"
 import i18next from "i18next"
 
 const initI18n = () => {
@@ -8,9 +8,7 @@ const initI18n = () => {
         fallbackLng: 'ru',
         resources: {
             ru: {
-                translation: {
-                    errors: errors
-                }
+                translation: ru
             }
         }
     })
