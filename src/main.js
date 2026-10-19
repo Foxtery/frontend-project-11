@@ -6,6 +6,7 @@ import initI18n from './i18n.js'
 import getRSSUrl from './api.js'
 import parserRss from './parser.js'
 import axios from 'axios'
+import startFeedUpdates from './updater.js'
 
 const startApp = (i18nInstance) => {
     const state = proxy({
@@ -49,6 +50,7 @@ const startApp = (i18nInstance) => {
             state.feeds.push(feed)
             state.posts.push(...posts)
             state.formState = 'success'
+            startFeedUpdates(feed, state)
         })
         .catch((error) => {
             state.formState = 'error'
