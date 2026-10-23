@@ -15,6 +15,11 @@ const ru = {
         loading: 'Загрузка...',
         success: 'RSS успешно загружен'
     },
+    actions: {
+        preview: 'Просмотр',
+        close: 'Закрыть',
+        readFull: 'Читать полностью',
+    },
 }
 
 export default ru

@@ -36,6 +36,7 @@ const parserRss = (xmlString) => {
     .map((item) => {
         const itemTitle = item.querySelector(':scope > title')
         const itemLink = item.querySelector(':scope > link')
+        const itemDescription = item.querySelector(':scope > description')
 
         if (!itemTitle || !itemLink) {
             return null
@@ -43,12 +44,13 @@ const parserRss = (xmlString) => {
 
         const title = itemTitle.textContent.trim()
         const link = itemLink.textContent.trim()
+        const description = itemDescription ? itemDescription.textContent.trim() : ''
 
         if (!title || !link) {
             return null
         }
 
-        return { title, link }
+        return { title, link, description }
     })
     .filter((post) => post !== null)
 

@@ -28,7 +28,13 @@ const updateFeed = (feed, state) => {
         }
         else {
             const postsToAdd = newPosts.map((post) => {
-                return {id: crypto.randomUUID(), feedId: feed.id, title: post.title, link: post.link}
+                return {
+                    id: crypto.randomUUID(),
+                    feedId: feed.id,
+                    title: post.title,
+                    link: post.link,
+                    description: post.description,
+                }
             })
             state.posts.unshift(...postsToAdd)
         }

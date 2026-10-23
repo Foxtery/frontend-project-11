@@ -14,9 +14,49 @@ const startApp = (i18nInstance) => {
         errorKey: null,
         feeds: [],
         posts: [],
+        ui: {
+            seenPostIds: [],
+            selectedPostId: null,
+        },
     })
 
     initView(state, i18nInstance)
+
+    const postsList = document.getElementById('posts-list')
+    const modal = document.getElementById('post-preview')
+    const closeButton = document.getElementById('modal-close')
+
+    postsList.addEventListener('click', (event) => {
+        const previewButton = event.target.closest('button[data-action="preview"]')
+        if (!previewButton) {
+            return
+        }
+
+        const post = state.posts.find((item) => item.id === previewButton.dataset.id)
+        if (!post) {
+            return
+        }
+
+        if (!state.ui.seenPostIds.includes(post.id)) {
+            state.ui.seenPostIds.push(post.id)
+        }
+        state.ui.selectedPostId = post.id
+    })
+
+    closeButton.addEventListener('click', () => {
+        state.ui.selectedPostId = null
+    })
+
+    modal.addEventListener('cancel', (event) => {
+        event.preventDefault()
+        state.ui.selectedPostId = null
+    })
+
+    modal.addEventListener('close', () => {
+        if (!modal.open) {
+            state.ui.selectedPostId = null
+        }
+    })
 
     const form = document.getElementById('form')
     form.addEventListener('submit', function (event) {
@@ -45,7 +85,13 @@ const startApp = (i18nInstance) => {
             const feedId = crypto.randomUUID()
             const feed = {id: feedId, url: validatedUrl, title: parsedData.feed.title, description: parsedData.feed.description}
             const posts = parsedData.posts.map((post) => {
-                return {id: crypto.randomUUID(), feedId: feedId, title: post.title, link: post.link }
+                return {
+                    id: crypto.randomUUID(),
+                    feedId: feedId,
+                    title: post.title,
+                    link: post.link,
+                    description: post.description,
+                }
             })
             state.feeds.push(feed)
             state.posts.push(...posts)
