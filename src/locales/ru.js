@@ -2,9 +2,9 @@ const ru = {
     errors: {
         required: 'Не должно быть пустым',
         invalidUrl: 'Ссылка должна быть валидным URL',
-        duplicate: 'Данный URL уже добавлен',
+        duplicate: 'RSS уже существует',
         invalidRss: 'Ресурс не содержит валидный RSS',
-        network: 'Ошибка сети. Попробуйте ещё раз',
+        network: 'Ошибка сети',
         unexpected: 'Произошла ошибка. Попробуйте ещё раз'
     },
     headings: {
