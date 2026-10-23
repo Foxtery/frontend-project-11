@@ -17,7 +17,7 @@ const getNewPosts = (incomingPosts, savedPosts) => {
     })
 }
 
-const updateFeed = (feed, state) => {
+const updateFeed = (feed, state, createId) => {
     return getRSSUrl(feed.url)
     .then(parserRss)
     .then(parsedData => {
@@ -29,7 +29,7 @@ const updateFeed = (feed, state) => {
         else {
             const postsToAdd = newPosts.map((post) => {
                 return {
-                    id: crypto.randomUUID(),
+                    id: createId(),
                     feedId: feed.id,
                     title: post.title,
                     link: post.link,
@@ -41,9 +41,9 @@ const updateFeed = (feed, state) => {
     })
 }
 
-const startFeedUpdates = (feed, state) => {
+const startFeedUpdates = (feed, state, createId) => {
     const check = () => {
-        return updateFeed(feed,state)
+        return updateFeed(feed, state, createId)
         .catch((error) => {
             console.error(error)
         })

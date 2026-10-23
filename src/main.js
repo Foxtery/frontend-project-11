@@ -9,6 +9,12 @@ import axios from 'axios'
 import startFeedUpdates from './updater.js'
 
 const startApp = (i18nInstance) => {
+    let lastId = 0
+    const createId = () => {
+        lastId += 1
+        return String(lastId)
+    }
+
     const state = proxy({
         formState: 'idle',
         errorKey: null,
@@ -82,11 +88,11 @@ const startApp = (i18nInstance) => {
         })
         .then(parserRss)
         .then(parsedData => {
-            const feedId = crypto.randomUUID()
+            const feedId = createId()
             const feed = {id: feedId, url: validatedUrl, title: parsedData.feed.title, description: parsedData.feed.description}
             const posts = parsedData.posts.map((post) => {
                 return {
-                    id: crypto.randomUUID(),
+                    id: createId(),
                     feedId: feedId,
                     title: post.title,
                     link: post.link,
@@ -96,7 +102,7 @@ const startApp = (i18nInstance) => {
             state.feeds.push(feed)
             state.posts.push(...posts)
             state.formState = 'success'
-            startFeedUpdates(feed, state)
+            startFeedUpdates(feed, state, createId)
         })
         .catch((error) => {
             state.formState = 'error'
